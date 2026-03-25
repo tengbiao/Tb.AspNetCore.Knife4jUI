@@ -7,9 +7,9 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<PackageId>Tb.AspNetCore.Knife4jUI</PackageId>
 		<PackageTags>swagger;documentation;discovery;help;webapi;aspnet;aspnetcore</PackageTags>
-		<PackageProjectUrl>https://github.com/luoyunchong/IGeekFan.AspNetCore.Knife4jUI</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/tengbiao/Tb.AspNetCore.Knife4jUI</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/luoyunchong/IGeekFan.AspNetCore.Knife4jUI.git</RepositoryUrl>
+		<RepositoryUrl>https://github.com/tengbiao/Tb.AspNetCore.Knife4jUI.git</RepositoryUrl>
 		<RootNamespace>Tb.AspNetCore.Knife4jUI</RootNamespace>
 		<Version>1.0.0</Version>
 		<Company />
