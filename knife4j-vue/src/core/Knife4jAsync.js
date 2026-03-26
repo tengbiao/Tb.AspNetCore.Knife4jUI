@@ -5179,6 +5179,12 @@ SwaggerBootstrapUi.prototype.createApiInfoInstance = function (pathKey, mtype, a
   // springdoc-openapi版本中对于接口不会再paths节点追加basePath,所以Knife4j自动化处理
   // 2022.12.5 针对openapi3规范，没有basePath属性，跟随项目Context-Path路径走，避免404
   if (that.springdoc || !swpinfo.oas2) {
+    // 对于 OAS3，也需要根据 appendBaePathFlag 标志位处理 basePath
+    if (!appendBaePathFlag) {
+      if (KUtils.checkUndefined(basePath)) {
+        newfullPath += basePath;
+      }
+    }
     var pathname = window.location.pathname;
     var reg = new RegExp('(.*?)/doc\.html.*$', 'ig');
     var tempPath = '';

@@ -27,7 +27,7 @@ module.exports = {
     },
     proxy: {
       "/": {
-        target: process.env.VUE_APP_API_TARGET || 'https://localhost:7137',
+        target: process.env.VUE_APP_API_TARGET || 'http://beta.gateway.qianxuncc.cn:8081',
         ws: true,
         changeOrigin: true
       }
