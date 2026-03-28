@@ -1,7 +1,7 @@
 <template>
     <a-layout class="ant-layout-has-sider">
       <a-layout-sider :trigger="null" collapsible :collapsed="collapsed" breakpoint="lg" @collapse="handleMenuCollapse"
-        :width="menuWidth" class="sider" style="background: #1e282c;">
+        :width="menuWidth" class="sider">
         <div class="knife4j-logo-data" key="logo" v-if="!collapsed && settings.enableGroup">
           <a to="/" style="float:left;">
             <a-select show-search :value="defaultServiceOption" style="width: 300px" :options="serviceOptions"
@@ -15,7 +15,7 @@
           </a>
         </div>
         <div :class="settings.enableGroup ? 'knife4j-menu' : 'knife4j-menu-all'">
-          <a-menu key="Menu" theme="dark" mode="inline" :inlineCollapsed="collapsed" @openChange="handleOpenChange"
+          <a-menu key="Menu" theme="light" mode="inline" :inlineCollapsed="collapsed" @openChange="handleOpenChange"
             @select="selected" :openKeys="openKeys" :selectedKeys="selectedKeys" style="padding: 2px 0; width: 100%">
             <ThreeMenu :menuData="localMenuData" :collapsed="collapsed" />
           </a-menu>
@@ -37,12 +37,11 @@
             </component>
           </a-tab-pane>
         </a-tabs>
-        <a-layout-footer style="padding: 0">
+        <!-- <a-layout-footer style="padding: 0">
           <GlobalFooter />
-        </a-layout-footer>
+        </a-layout-footer> -->
       </a-layout>
     </a-layout>
-  </div>
 </template>
 <script>
 import logo from "@/core/logo.js";

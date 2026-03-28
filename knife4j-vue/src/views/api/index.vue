@@ -26,7 +26,6 @@
           </span>
           <ScriptView :api="api" :swaggerInstance="swaggerInstance" />
         </a-tab-pane>
-
       </a-tabs>
     </a-row>
     <a-row class="knife4j-api-readonly" v-else>

@@ -6,10 +6,10 @@
 @DebugContentBodyHeight: calc(100vh - 395px);
 @headerDefaultWidth: calc(100vw - 310px);
 @headerCollapsedWidth: calc(100vw - 80px);
-@contentTabHeight: calc(100vh - 152px);
+@contentTabHeight: calc(100vh - 110px);
 /* @GlobalBackgroundColor: #252728; */
-@GlobalBackgroundColor: #1e282c;
-@GlobalSubMenuBackgroundColor: #2c3b41;
+@GlobalBackgroundColor: #fff;
+@GlobalSubMenuBackgroundColor: #f5f5f5;
 
 .knife4j {
   padding: 0px;
@@ -52,23 +52,23 @@
 
 .knife4j-menu::-webkit-scrollbar {
   /*滚动条整体样式*/
-  width: 6px;
+  width: 3px;
   /*高宽分别对应横竖滚动条的尺寸*/
   height: 0.5px;
 }
 
 .knife4j-menu::-webkit-scrollbar-thumb {
   /*滚动条里面小方块*/
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
   background: #469aed;
 }
 
 .knife4j-menu::-webkit-scrollbar-track {
   /*滚动条里面轨道*/
-  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  background: #001529;
+  background: #fff;
 }
 
 
@@ -102,15 +102,15 @@
 
 .knife4j-menu-all::-webkit-scrollbar {
   /*滚动条整体样式*/
-  width: 6px;
+  width: 3px;
   /*高宽分别对应横竖滚动条的尺寸*/
   height: 0.5px;
 }
 
 .knife4j-menu-all::-webkit-scrollbar-thumb {
   /*滚动条里面小方块*/
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
   background: #469aed;
 }
 
@@ -118,7 +118,7 @@
   /*滚动条里面轨道*/
   -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  background: #001529;
+  background: #333;
 }
 
 
@@ -131,14 +131,36 @@
   text-decoration: line-through;
 }
 
-
 .knife4j-menu-line {
-  /* left: 10px;
-  position: absolute;
-  */
-  width: 65px;
-  display: inline-block;
+    width: 40px;
+    color: red;
+    display: inline-block;
+    margin-right: 5px;
+    font-weight:530;
+}
 
+.knife4j-menu-line.post{
+  color: #10af88!important;
+}
+
+.knife4j-menu-line.get{
+  color: #61affe!important;
+}
+
+.knife4j-menu-line.put{
+  color:  #fca130!important;
+}
+
+.knife4j-menu-line.delete{
+  color: #f93e3e!important;
+}
+
+.knife4j-menu-line.options{
+  color: #0d5aa7!important;
+}
+
+.knife4j-menu-line.patch{
+  color: #50e3c2!important;
 }
 
 .knife4j-menu-left-style {
@@ -300,6 +322,7 @@
   overflow-y: auto;
   height: @contentTabHeight;
   min-height: 400px;
+  padding-bottom: 10px;
 }
 
 /*
@@ -307,28 +330,41 @@
 */
 .knife4j-body-content::-webkit-scrollbar {
   /*滚动条整体样式*/
-  width: 8px;
+  width: 3px;
   /*高宽分别对应横竖滚动条的尺寸*/
   height: 0.5px;
 }
 
 .knife4j-body-content::-webkit-scrollbar-thumb {
   /*滚动条里面小方块*/
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
   background: #469aed;
 }
 
 .knife4j-body-content::-webkit-scrollbar-track {
   /*滚动条里面轨道*/
-  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
   background: #fff;
 }
 
+.ant-tabs .ant-tabs-left-bar {
+  position: fixed;
+  font-size: 15px;
+  padding-top: 10px;
+}
+
+.ant-tabs .ant-tabs-left-content{
+  padding-left: 120px;
+}
+
+.ant-tabs .ant-tabs-left-bar .ant-tabs-tab {
+   text-align: left;
+}
 
 .knife4j-router-view {
-  min-height: 480px;
+  //min-height: 480px;
   margin: 5px 5px 0;
 }
 

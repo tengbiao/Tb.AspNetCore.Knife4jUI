@@ -8,7 +8,7 @@
         <a-icon type="pie-chart" />
         <span>{{ item.name }}</span>
       </a-menu-item>
-      <sub-menu v-else :key="item.key" :menu-info="item" />
+      <sub-menu v-else :key="`sub-${item.key}`" :menu-info="item" />
     </template>
   </a-sub-menu>
 </template>
