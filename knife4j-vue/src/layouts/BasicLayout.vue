@@ -2,14 +2,10 @@
     <a-layout class="ant-layout-has-sider">
       <a-layout-sider :trigger="null" collapsible :collapsed="collapsed" breakpoint="lg" @collapse="handleMenuCollapse"
         :width="menuWidth" class="sider">
-        <div class="knife4j-logo-data" key="logo" v-if="!collapsed && settings.enableGroup">
-          <a to="/" style="float:left;">
-            <a-select show-search :value="defaultServiceOption" style="width: 300px" :options="serviceOptions"
-              optionFilterProp="children" @change="serviceChange">
-            </a-select>
-          </a>
+        <div class="knife4j-logo-data" key="logo" v-if="!collapsed">
+          <span class="knife4j-logo-title">{{ currentGroupName }}</span>
         </div>
-        <div class="knife4j-logo" key="logo" v-if="collapsed && settings.enableGroup">
+        <div class="knife4j-logo" key="logo" v-if="collapsed">
           <a to="/" style="float:left;" v-if="collapsed">
             <img :src="logo" alt="logo" />
           </a>
@@ -26,7 +22,10 @@
         <a-layout-header style="padding: 0;background: #fff;    height: 56px; line-height: 56px;">
           <GlobalHeader @searchKey="searchKey" @searchClear="searchClear" :documentTitle="documentTitle"
             :collapsed="collapsed" :headerClass="headerClass" :currentUser="currentUser" :onCollapse="handleMenuCollapse"
-            :onMenuClick="item => handleMenuClick(item)" />
+            :onMenuClick="item => handleMenuClick(item)"
+            :serviceOptions="serviceOptions"
+            :defaultServiceOption="defaultServiceOption"
+            @serviceChange="serviceChange" />
         </a-layout-header>
         <context-menu :itemList="menuItemList" :visible.sync="menuVisible" @select="onMenuSelect" />
         <a-tabs hideAdd v-model="activeKey" @contextmenu.native="e => onContextmenu(e)" type="editable-card"
@@ -138,6 +137,11 @@ export default {
       return this.$store.state.globals.defaultServiceOption;
     }, settings() {
       return this.$store.state.globals.settings;
+    },
+    currentGroupName() {
+      const options = this.serviceOptions || [];
+      const current = options.find(item => item.value === this.defaultServiceOption);
+      return current ? current.label : this.documentTitle;
     }
   },
   updated() {
@@ -1045,4 +1049,10 @@ export default {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.knife4j-logo-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+</style>

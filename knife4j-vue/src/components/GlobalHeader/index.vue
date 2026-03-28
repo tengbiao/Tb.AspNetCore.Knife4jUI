@@ -5,7 +5,16 @@
       :type="collapsed ? 'menu-unfold' : 'menu-fold'"
       @click="toggle"
     />
-    <span class="knife4j-header-title">{{ documentTitle }}</span>
+    <a-button
+      v-if="serviceOptions && serviceOptions.length > 0"
+      type="primary"
+      size="small"
+      class="group-btn"
+      @click="showGroupModal"
+    >
+      <a-icon type="swap" />
+      <span>{{ $t('switchGroupText') }}</span>
+    </a-button>
 
     <div class="right">
       <HeaderSearch
@@ -42,6 +51,42 @@
       </a-dropdown>
       <a-spin v-else size="small" style="margin-left: 8px" />
     </div>
+
+    <a-modal
+      :title="$t('selectGroupText')"
+      :visible="groupModalVisible"
+      :footer="null"
+      @cancel="closeGroupModal"
+      width="400px"
+    >
+      <a-input-search
+        v-model="groupSearchKey"
+        :placeholder="$t('searchHolderText')"
+        class="group-search"
+        allowClear
+      />
+      <div class="group-list">
+        <div
+          v-for="item in filteredServiceOptions"
+          :key="item.value"
+          class="group-item"
+          :class="{ 'group-item-active': item.value === defaultServiceOption }"
+          @click="selectGroup(item.value)"
+        >
+          <div class="group-item-content">
+            <span class="group-item-title">{{ item.label }}</span>
+          </div>
+          <a-icon
+            v-if="item.value === defaultServiceOption"
+            type="check"
+            class="group-check-icon"
+          />
+        </div>
+        <div v-if="filteredServiceOptions.length === 0" class="group-empty">
+          {{ $t('swaggerModel.nodata') }}
+        </div>
+      </div>
+    </a-modal>
   </div>
 </template>
 <script>
@@ -85,14 +130,34 @@ export default {
       type: Function,
       default: () => {},
     },
+    serviceOptions: {
+      type: Array,
+      default: () => [],
+    },
+    defaultServiceOption: {
+      type: String,
+      default: "",
+    },
   },
   computed: {
     settings() {
       return this.$store.state.globals.settings;
     },
+    filteredServiceOptions() {
+      if (!this.groupSearchKey) {
+        return this.serviceOptions || [];
+      }
+      const key = this.groupSearchKey.toLowerCase();
+      return (this.serviceOptions || []).filter(item =>
+        item.label.toLowerCase().includes(key)
+      );
+    },
   },
   data() {
-    return {};
+    return {
+      groupModalVisible: false,
+      groupSearchKey: "",
+    };
   },
   methods: {
     changeZh() {
@@ -142,12 +207,84 @@ export default {
       } catch (error) {}
       this.$message.info("清除本地缓存成功");
     },
+    showGroupModal() {
+      this.groupModalVisible = true;
+    },
+    closeGroupModal() {
+      this.groupModalVisible = false;
+      this.groupSearchKey = "";
+    },
+    selectGroup(value) {
+      this.$emit("serviceChange", value);
+      this.closeGroupModal();
+    },
   },
 };
 </script>
 
 <style lang="less" scoped>
 @import "./index.less";
+
+.group-btn {
+  margin-left: 16px;
+}
+
+.group-search {
+  margin-bottom: 12px;
+}
+
+.group-list {
+  max-height: 400px;
+  overflow-y: auto;
+
+  .group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s;
+
+    &:hover {
+      border-color: #1890ff;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .group-item-content {
+      .group-item-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+      }
+    }
+  }
+
+  .group-item-active {
+    background-color: #e6f7ff;
+    border-color: #1890ff;
+
+    &:hover {
+      background-color: #bae7ff;
+    }
+  }
+
+  .group-check-icon {
+    color: #1890ff;
+    font-size: 16px;
+  }
+
+  .group-empty {
+    text-align: center;
+    color: #999;
+    padding: 24px 0;
+  }
+}
 </style>
 <style lang="less">
 .ant-layout {

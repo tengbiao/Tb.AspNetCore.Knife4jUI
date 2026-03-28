@@ -7,6 +7,8 @@ const langOptions = {
   langText: '中',
   settingText: '个性化配置',
   cacheText: '清除缓存',
+  switchGroupText: '切换分组',
+  selectGroupText: '选择分组',
   //文档中各个表格的属性
   table: {
     //SwaggerModels

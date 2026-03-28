@@ -6,6 +6,8 @@ const langOptions = {
   langText: 'EN',
   settingText: 'Settings',
   cacheText: 'Clear Caches',
+  switchGroupText: 'Switch Group',
+  selectGroupText: 'Select Group',
   //文档中各个表格的属性
   table: {
     //SwaggerModels

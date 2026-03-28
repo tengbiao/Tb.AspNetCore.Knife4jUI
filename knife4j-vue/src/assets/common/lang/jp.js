@@ -7,6 +7,8 @@ const langOptions = {
   langText: '日本語',
   settingText: '設定',
   cacheText: 'キャッシュをクリアする',
+  switchGroupText: 'グループ切替',
+  selectGroupText: 'グループ選択',
   //文档中各个表格的属性
   table: {
     //SwaggerModels
